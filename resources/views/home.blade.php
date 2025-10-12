@@ -76,10 +76,10 @@
                                     <input 
                                         type="text" 
                                         id="nama" 
-                                        name="nama_lengkap" 
+                                        name="nama" 
                                         class="form-control" 
                                         placeholder="Masukkan nama lengkap Anda" 
-                                        required>
+                                        >
                                 </div>
 
                                 <div class="mb-3">
@@ -87,7 +87,7 @@
                                     <input 
                                         type="email" 
                                         id="email" 
-                                        name="alamat_email" 
+                                        name="email" 
                                         class="form-control" 
                                         placeholder="Masukkan email aktif Anda" 
                                         required>
@@ -97,7 +97,7 @@
                                     <label for="pertanyaan" class="form-label">Pertanyaan</label>
                                     <textarea 
                                         id="pertanyaan" 
-                                        name="isi_pertanyaan" 
+                                        name="pertanyaan" 
                                         class="form-control" 
                                         rows="4" 
                                         placeholder="Tuliskan pertanyaan Anda di sini..." 
