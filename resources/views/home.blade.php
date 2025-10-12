@@ -51,35 +51,66 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- Tiga Kolom -->
     <section class="py-5">
         <div class="container">
-            <h4>About Our Application</h4>
-            <p>
-                Our application provides a clean and intuitive interface, allowing users to navigate easily
-                and perform tasks efficiently. Built with Laravel and Bootstrap, it offers flexibility and responsiveness.
-            </p>
-            <a href="#" class="btn btn-primary">Explore More</a>
-        </div>
-    </section>
+            <div class="row">
+                <!-- Kolom Kiri (Form Pertanyaan) -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Form Pertanyaan</h5>
 
-    <!-- List Pendidikan Section -->
-    <section class="py-3">
-        <div class="container">
-            <h4>Daftar Jenjang Pendidikan</h4>
-            <ul class="list-group mt-3">
-                @foreach ($list_pendidikan as $pendidikan)
-                    <li class="list-group-item">{{ $pendidikan }}</li>
-                @endforeach
-            </ul>
-        </div>
-    </section>
+                            <form action="{{ route('question.store') }}" method="POST">
+                                @csrf
+                               <div class="mb-3">
+                                    <label for="nama" class="form-label">Nama Lengkap</label>
+                                    <input 
+                                        type="text" 
+                                        id="nama" 
+                                        name="nama_lengkap" 
+                                        class="form-control" 
+                                        placeholder="Masukkan nama lengkap Anda" 
+                                        required>
+                                </div>
 
-    <!-- Alerts Section -->
-    <section class="py-3">
-        <div class="container">
-            <div class="alert alert-info">Informational alert</div>
-            <div class="alert alert-success">Success alert</div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Alamat Email</label>
+                                    <input 
+                                        type="email" 
+                                        id="email" 
+                                        name="alamat_email" 
+                                        class="form-control" 
+                                        placeholder="Masukkan email aktif Anda" 
+                                        required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="pertanyaan" class="form-label">Pertanyaan</label>
+                                    <textarea 
+                                        id="pertanyaan" 
+                                        name="isi_pertanyaan" 
+                                        class="form-control" 
+                                        rows="4" 
+                                        placeholder="Tuliskan pertanyaan Anda di sini..." 
+                                        required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Kirim Pertanyaan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom Tengah (kosong dulu) -->
+                <div class="col-md-4">
+                    <!-- Kosong -->
+                </div>
+
+                <!-- Kolom Kanan (kosong dulu) -->
+                <div class="col-md-4">
+                    <!-- Kosong -->
+                </div>
+            </div>
         </div>
     </section>
 
