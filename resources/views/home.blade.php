@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,17 +13,20 @@
         body {
             font-family: Arial, sans-serif;
         }
+
         .hero-section {
             background-color: #007bff;
             color: white;
             padding: 60px 0;
             text-align: center;
         }
+
         .hero-section h1 {
             font-weight: bold;
         }
     </style>
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -43,14 +47,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="display-6 mb-2">{{ $username }}</h1>
-            <p class="lead mb-0">{{ $last_login }}</p>
-        </div>
-    </section>
-
     <!-- Tiga Kolom -->
     <section class="py-5">
         <div class="container">
@@ -60,48 +56,39 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Form Pertanyaan</h5>
-                               @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
+                            
+                            <!-- ERROR MESSAGES KHUSUS FORM PERTANYAAN -->
+                            @if ($errors->has('name') || $errors->has('email') || $errors->has('pertanyaan'))
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        @if ($errors->has('name'))
+                                            <li>{{ $errors->first('name') }}</li>
+                                        @endif
+                                        @if ($errors->has('email'))
+                                            <li>{{ $errors->first('email') }}</li>
+                                        @endif
+                                        @if ($errors->has('pertanyaan'))
+                                            <li>{{ $errors->first('pertanyaan') }}</li>
+                                        @endif
+                                    </ul>
+                                </div>
+                            @endif
+
                             <form action="{{ route('question.store') }}" method="POST">
                                 @csrf
-                               <div class="mb-3">
-                                    <label for="nama" class="form-label">Nama Lengkap</label>
-                                    <input 
-                                        type="text" 
-                                        id="nama" 
-                                        name="nama" 
-                                        class="form-control" 
-                                        placeholder="Masukkan nama lengkap Anda" 
-                                        >
-                                </div>
-
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Alamat Email</label>
-                                    <input 
-                                        type="email" 
-                                        id="email" 
-                                        name="email" 
-                                        class="form-control" 
-                                        placeholder="Masukkan email aktif Anda" 
-                                        required>
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        value="{{ old('name') }}">
                                 </div>
-
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        value="{{ old('email') }}">
+                                </div>
                                 <div class="mb-3">
                                     <label for="pertanyaan" class="form-label">Pertanyaan</label>
-                                    <textarea 
-                                        id="pertanyaan" 
-                                        name="pertanyaan" 
-                                        class="form-control" 
-                                        rows="4" 
-                                        placeholder="Tuliskan pertanyaan Anda di sini..." 
-                                        required></textarea>
+                                    <textarea class="form-control" id="pertanyaan" name="pertanyaan" rows="4">{{ old('pertanyaan') }}</textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Kirim Pertanyaan</button>
                             </form>
@@ -109,9 +96,49 @@
                     </div>
                 </div>
 
-                <!-- Kolom Tengah (kosong dulu) -->
+                <!-- Kolom Tengah (Form Login) -->
                 <div class="col-md-4">
-                    <!-- Kosong -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Form Login</h5>
+
+                            <!-- ERROR MESSAGES KHUSUS FORM LOGIN -->
+                            @if ($errors->has('username') || $errors->has('password'))
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        @if ($errors->has('username'))
+                                            <li>{{ $errors->first('username') }}</li>
+                                        @endif
+                                        @if ($errors->has('password'))
+                                            <li>{{ $errors->first('password') }}</li>
+                                        @endif
+                                    </ul>
+                                </div>
+                            @endif
+
+                            @if (session('error'))
+                                <div class="alert alert-danger">{{ session('error') }}</div>
+                            @endif
+
+                            @if (session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+
+                            <form action="{{ route('auth.login') }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username"
+                                        value="{{ old('username') }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password">
+                                </div>
+                                <button type="submit" class="btn btn-success w-100">Login</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Kolom Kanan (kosong dulu) -->
