@@ -27,7 +27,17 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all()); 
+        //dd($request->all()); 
+        $request->validate([
+        'name' => 'required|max:10',           
+        'email' => ['required', 'email'],      
+        'pertanyaan' => 'required|max:300|min:8',
+    ]);
+        $data['name'] = $request->nama_lengkap;
+        $data['email'] = $request->alamat_email;
+        $data['pertanyaan'] = $request->isi_pertanyaan;
+    
+        return view('home-question-respond', $data);
     }
 
     /**
