@@ -9,7 +9,8 @@
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
+    <link rel="stylesheet" href="{{ asset('../assets/css/custom-style.css') }}">
+    {{-- <style>
         body {
             font-family: Arial, sans-serif;
         }
@@ -24,7 +25,7 @@
         .hero-section h1 {
             font-weight: bold;
         }
-    </style>
+    </style> --}}
 </head>
 
 <body>
@@ -33,6 +34,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">My Laravel App</a>
+            <img src="{{ asset('/assets/images/Silent_Witch.jpeg') }}" alt="Logo">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -56,13 +58,17 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Form Pertanyaan</h5>
-                            
+                                @if (session('info'))
+                                    <div class="alert alert-info">
+                                        {!! session('info') !!}
+                                    </div>
+                                @endif
                             <!-- ERROR MESSAGES KHUSUS FORM PERTANYAAN -->
-                            @if ($errors->has('name') || $errors->has('email') || $errors->has('pertanyaan'))
+                            @if ($errors->has('nama') || $errors->has('email') || $errors->has('pertanyaan'))
                                 <div class="alert alert-danger">
                                     <ul class="mb-0">
-                                        @if ($errors->has('name'))
-                                            <li>{{ $errors->first('name') }}</li>
+                                        @if ($errors->has('nama'))
+                                            <li>{{ $errors->first('nama') }}</li>
                                         @endif
                                         @if ($errors->has('email'))
                                             <li>{{ $errors->first('email') }}</li>
@@ -77,9 +83,9 @@
                             <form action="{{ route('question.store') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        value="{{ old('name') }}">
+                                    <label for="nama" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" id="nama" name="nama"
+                                        value="{{ old('nama') }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
