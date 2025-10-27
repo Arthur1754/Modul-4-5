@@ -1,5 +1,5 @@
-@extends('admin.template')
-@section('title', 'tambah pelanggan')
+@extends('admin.layouts.app')
+@section('title', 'Tambah Pelanggan')
 @section('content')
 
         <div class="py-4">
@@ -12,13 +12,13 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="breadcrumb-item"><a href="#">Pelanggan</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Tambah Pelanggan</li>
+                    <li class="breadcrumb-item"><a href="#">pelanggan</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tambah pelanggan</li>
                 </ol>
             </nav>
             <div class="d-flex justify-content-between w-100 flex-wrap">
                 <div class="mb-3 mb-lg-0">
-                    <h1 class="h4">Tambah Pelanggan</h1>
+                    <h1 class="h4">Tambah pelanggan</h1>
                     <p class="mb-0">Form untuk menambahkan data pelanggan baru.</p>
                 </div>
                 <div>

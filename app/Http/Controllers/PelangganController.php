@@ -31,7 +31,7 @@ class PelangganController extends Controller
     public function store(Request $request)
     {
        //dd($request->all());
-       $data['first_name'] = $request->first_name;
+        $data['first_name'] = $request->first_name;
 		$data['last_name'] = $request->last_name;
 		$data['birthday'] = $request->birthday;
 		$data['gender'] = $request->gender;
@@ -85,6 +85,9 @@ class PelangganController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pelanggan = Pelanggan::findOrFail($id);
+
+        $pelanggan->delete();
+        return redirect()->route('pelanggan.index')->with('success', 'Data berhasil dihapus');
     }
 }
